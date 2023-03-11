@@ -76,15 +76,16 @@ class ProcessManager
      * @param map Memory mapping
      * @param readyToRun True to immediately run the Process or false to sleep.
      * @param priority Default priority of 3.
-     * \@param privileged True to create a privileged Process
+     * @param privileged True to create a privileged Process
      *
      * @return Process pointer on success or ZERO on failure
      */
     Process * create(const Address entry,
                      const MemoryMap &map,
                      const bool readyToRun = false,
+                     const bool privileged = false,
                      int priority = 3
-                     /*const bool privileged = false*/);
+                    );
 
     /**
      * Retrieve a Process by it's ID.

@@ -45,8 +45,9 @@ ProcessManager::~ProcessManager()
 Process * ProcessManager::create(const Address entry,
                                  const MemoryMap &map,
                                  const bool readyToRun,
-                                int priority
-                                 /*const bool privileged*/)
+                                 const bool privileged,
+                                 int priority
+                                 )
 {
     Size pid = 0;
 
@@ -57,7 +58,7 @@ Process * ProcessManager::create(const Address entry,
     }
 
     // Create the new Process
-    Process *proc = new Arch::Process(pid, entry, /*privileged*/ priority, map);
+    Process *proc = new Arch::Process(pid, entry,privileged, priority, map);
     if (!proc)
     {
         ERROR("failed to allocate Process");
