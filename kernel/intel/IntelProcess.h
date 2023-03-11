@@ -53,7 +53,7 @@ class IntelProcess : public Process
      * @param priority Priority from 1 to 5, default 3.
      * @param map Virtual memory layout.
      */
-    IntelProcess(ProcessID id, Address entry, boolean privileged, int priority, const MemoryMap &map);
+    IntelProcess(ProcessID id, Address entry, bool privileged, int priority, const MemoryMap &map);
 
     /**
      * Destructor function.

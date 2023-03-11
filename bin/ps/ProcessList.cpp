@@ -82,7 +82,7 @@ ProcessList::Result ProcessList::exec()
                 // Output a line
                 char line[128];
                 snprintf(line, sizeof(line),
-                        "%3d %7d %1d %4d %5d %10s %32s\r\n",
+                        "%3d %7d %3d %4d %5d %10s %32s\r\n",
                         pid, info.kernelState.parent, info.kernelState.priority,
                         0, 0, *info.textState, *info.command);
                 out << line;
