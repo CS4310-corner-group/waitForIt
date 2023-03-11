@@ -23,7 +23,7 @@
 #include "Process.h"
 #include "ProcessEvent.h"
 
-Process::Process(ProcessID id, Address entry, bool privileged, const MemoryMap &map)
+Process::Process(ProcessID id, Address entry, /*bool privileged*/ int priority, const MemoryMap &map)
     : m_id(id), m_map(map), m_shares(id)
 {
     m_state         = Stopped;
@@ -32,7 +32,13 @@ Process::Process(ProcessID id, Address entry, bool privileged, const MemoryMap &
     m_waitResult    = 0;
     m_wakeups       = 0;
     m_entry         = entry;
-    m_privileged    = privileged;
+    if(0 < m_priority < 6){
+        m_priority = priority;
+    }
+    else{
+        m_priority = 3;
+    }
+    /*m_privileged    = privileged;*/
     m_memoryContext = ZERO;
     m_kernelChannel = ZERO;
     MemoryBlock::set(&m_sleepTimer, 0, sizeof(m_sleepTimer));
@@ -97,10 +103,15 @@ MemoryContext * Process::getMemoryContext()
     return m_memoryContext;
 }
 
+int Process::getPriority(){
+    return m_priority;
+}
+/*
 bool Process::isPrivileged() const
 {
     return m_privileged;
 }
+*/
 
 void Process::setParent(ProcessID id)
 {

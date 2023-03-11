@@ -78,10 +78,11 @@ class Process
      *
      * @param id Process Identifier
      * @param entry Initial program counter value.
-     * @param privileged If true, the process has unlimited access to hardware.
+     * \@param privileged If true, the process has unlimited access to hardware.
+     * @param priority Priority level, from 1 to 5, default 3.
      * @param map Memory map to use
      */
-    Process(ProcessID id, Address entry, bool privileged, const MemoryMap &map);
+    Process(ProcessID id, Address entry, /*bool privileged*/ int priority, const MemoryMap &map);
 
     /**
      * Destructor function.
@@ -133,12 +134,24 @@ class Process
      */
     MemoryContext * getMemoryContext();
 
+    
     /**
      * Get privilege.
      *
      * @return Privilege of the Process.
      */
+    /*
     bool isPrivileged() const;
+    */
+
+    /**
+     * Get priority level.
+     *
+     * @return Priority level of the Process.
+     */
+    int getPriority() const;
+
+
 
     /**
      * Compare two processes.
@@ -258,8 +271,12 @@ class Process
     /** Wait exit result of the other Process. */
     uint m_waitResult;
 
+
     /** Privilege level */
-    bool m_privileged;
+    /*bool m_privileged;*/
+
+    /** Priority level**/
+    int m_priority;
 
     /** Entry point of the program */
     Address m_entry;
