@@ -27,21 +27,15 @@ ProcessList::ProcessList(int argc, char **argv)
 {
     parser().setDescription("Output system process list");
     parser().registerFlag('l', "list", "Displays priority level of processes");
-    //parser().registerPositional("FLAG", "Waits until the given process is completed");
 
 }
 
 ProcessList::Result ProcessList::exec()
 {
-    //String flag = atoi(arguments().get("FLAG"));
     const ProcessClient process;
     String out;
-    //ProcessManager::get(const ProcessID id)
-    //Process proc;
-    // Print header
-    
-
-    // ps  command before flag was added
+   
+    // If no flag
     if (arguments().getFlags().count() == 0)
     {
         out << "ID  PARENT  USER GROUP STATUS     CMD\r\n";
@@ -68,25 +62,26 @@ ProcessList::Result ProcessList::exec()
         write(1, *out, out.length());
         return Success;
     }
-    // Print everything?
+
+    // If flag
     else if (arguments().get("list"))
     {
         out << "ID  PARENT PRI USER GROUP STATUS     CMD\r\n";
         // Loop processes
         for (ProcessID pid = 0; pid < ProcessClient::MaximumProcesses; pid++)
         {
-            ProcessClient::Info info;
+            //ProcessClient::Info info;
             //int Process::getPriority()
-            const ProcessClient::Result result = process.processInfo(pid, info);
+            //const ProcessClient::Result result = process.processInfo(pid, info);
+            
             if (result == ProcessClient::Success)
             {
                 DEBUG("PID " << pid << " state = " << *info.textState);
-                Process * proc = 
                 // Output a line
                 char line[128];
                 snprintf(line, sizeof(line),
                         "%3d %7d %1d %4d %5d %10s %32s\r\n",
-                        pid, info.kernelState.parent, ProcessManager::get(pid).Process::getPriority(),
+                        pid, info.kernelState.parent, /* NEED TO DISPLAY PRIORITY INT SOMEHOW*/,
                         0, 0, *info.textState, *info.command);
                 out << line;
             }   
@@ -95,6 +90,8 @@ ProcessList::Result ProcessList::exec()
         write(1, *out, out.length());
         return Success;
     }
+
+    return Success;
 
     
 }

@@ -138,7 +138,7 @@ class Process
     /**
      * Get privilege.
      *
-     * @return Privilege of the Process.
+     * \@return Privilege of the Process.
      */
     /*
     bool isPrivileged() const;
