@@ -66,14 +66,16 @@ ProcessList::Result ProcessList::exec()
     // If flag
     else if (arguments().get("list"))
     {
+        
+
         out << "ID  PARENT PRI USER GROUP STATUS     CMD\r\n";
         // Loop processes
         for (ProcessID pid = 0; pid < ProcessClient::MaximumProcesses; pid++)
         {
-            //ProcessClient::Info info;
-            //int Process::getPriority()
-            //const ProcessClient::Result result = process.processInfo(pid, info);
-            
+            ProcessClient::Info info;
+
+            const ProcessClient::Result result = process.processInfo(pid, info);
+          
             if (result == ProcessClient::Success)
             {
                 DEBUG("PID " << pid << " state = " << *info.textState);
@@ -81,7 +83,7 @@ ProcessList::Result ProcessList::exec()
                 char line[128];
                 snprintf(line, sizeof(line),
                         "%3d %7d %1d %4d %5d %10s %32s\r\n",
-                        pid, info.kernelState.parent, info.kernelState.priority,/* NEED TO DISPLAY PRIORITY INT SOMEHOW*/,
+                        pid, info.kernelState.parent, info.kernelState.priority,
                         0, 0, *info.textState, *info.command);
                 out << line;
             }   

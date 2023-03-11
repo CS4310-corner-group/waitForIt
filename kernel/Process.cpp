@@ -32,7 +32,7 @@ Process::Process(ProcessID id, Address entry, /*bool privileged*/ int priority, 
     m_waitResult    = 0;
     m_wakeups       = 0;
     m_entry         = entry;
-    if(0 < m_priority < 6){
+    if(0 < m_priority && m_priority < 6){
         m_priority = priority;
     }
     else{
@@ -103,7 +103,8 @@ MemoryContext * Process::getMemoryContext()
     return m_memoryContext;
 }
 
-int Process::getPriority(){
+int Process::getPriority() const
+{
     return m_priority;
 }
 /*
