@@ -66,8 +66,6 @@ ProcessList::Result ProcessList::exec()
     // If flag
     else if (arguments().get("list"))
     {
-        
-
         out << "ID  PARENT PRI USER GROUP STATUS     CMD\r\n";
         // Loop processes
         for (ProcessID pid = 0; pid < ProcessClient::MaximumProcesses; pid++)
