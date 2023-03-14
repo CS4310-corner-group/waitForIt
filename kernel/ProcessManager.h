@@ -99,6 +99,13 @@ class ProcessManager
     /**
      * Remove a Process.
      */
+
+    Result modifyPriority(Process *proc, int newPriority);
+
+    /**
+     * Modify priority of a process.
+     */
+
     void remove(Process *proc, const uint exitStatus = 0);
 
     /**

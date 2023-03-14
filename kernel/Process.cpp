@@ -113,6 +113,13 @@ bool Process::isPrivileged() const
     return m_privileged;
 }
 
+void Process::setPriority(int priority){
+    if(0 < priority && priority < 6){
+        m_priority = priority;
+    }
+    
+}
+
 void Process::setParent(ProcessID id)
 {
     m_parent = id;
