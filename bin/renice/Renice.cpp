@@ -46,8 +46,8 @@ Renice::Result Renice::exec()
     const Vector<Argument *> & positionals = arguments().getPositionals();
     if(positionalCount == 2){
         //ProcessID PID = atoi(arguments().get("PROCESS ID"));
-        String priority = arguments().get("PRIORITY");
-        ProcessID PID = arguments().get("PID");
+        int priority = atoi(arguments().get("PRIORITY"));
+        ProcessID PID = atoi(arguments().get("PID"));
         out << PID;
         //const Vector<Argument *> & positionals = arguments().getPositionals();
         //int newPriority = positionals[0];
