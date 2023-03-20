@@ -18,8 +18,11 @@
 #include <Types.h>
 #include <Macros.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <ProcessClient.h>
+#include "ProcessManager.h"
 #include <FreeNOS/Kernel.h>
 #include <FreeNOS/ProcessEvent.h>
 #include <FreeNOS/ProcessManager.h>
@@ -37,13 +40,13 @@ Renice::Renice(int argc, char **argv)
 
 Renice::Result Renice::exec()
 {
-    int positionalCount = arguments().getPositionals().count;
-    ProcessID PID;
+    //int positionalCount = arguments().getPositionals().count;
+    //ProcessID PID;
     String out;
     Process *proc = ZERO;
     //from processctl.cpp
     ProcessManager *procs = Kernel::instance()->getProcessManager();
-    const Vector<Argument *> & positionals = arguments().getPositionals();
+    //const Vector<Argument *> & positionals = arguments().getPositionals();
     if(positionalCount == 2){
         //ProcessID PID = atoi(arguments().get("PROCESS ID"));
         int priority = atoi(arguments().get("PRIORITY"));
@@ -52,6 +55,7 @@ Renice::Result Renice::exec()
         //const Vector<Argument *> & positionals = arguments().getPositionals();
         //int newPriority = positionals[0];
         //PID = positionals[1];
+        
         proc = procs->get(PID);
         procs->modifyPriority(proc, priority);   
         return Success;

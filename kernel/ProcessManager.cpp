@@ -99,7 +99,7 @@ Process * ProcessManager::get(const ProcessID id)
     return m_procs.get(id);
 }
 
-ProcessManager::Result ProcessManager::modifyPriority(Process *proc, int newPriority){
+ProcessManager::Result ProcessManager::modifyPriority(int newPriority){
 	proc->setPriority(newPriority);
     return Success;
 }

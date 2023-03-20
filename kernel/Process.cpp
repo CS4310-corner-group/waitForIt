@@ -113,9 +113,14 @@ bool Process::isPrivileged() const
     return m_privileged;
 }
 
-void Process::setPriority(int priority){
+Process::Result Process::setPriority(int priority){
     if(0 < priority && priority < 6){
         m_priority = priority;
+        return Success;
+    }
+    else{
+        ERROR("Priority must be between 1 and 5");
+        return InvalidArgument;
     }
     
 }
