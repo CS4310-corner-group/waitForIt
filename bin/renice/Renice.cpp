@@ -25,11 +25,12 @@
 #include <FreeNOS/ProcessManager.h>
 #include "Renice.h"
 
-Renice:Renice(int argc, char **argv)
+Renice::Renice(int argc, char **argv)
     : POSIXApplication(argc, argv)
 {
     parser().setDescription("Change priority of running processes");
-    parser().registerPositional("PRIORITY and PID", "priority to change pid to", 2);
+    parser().registerPositional("PRIORITY", "Priority to change to");
+    parser().registerPositional("PID", "PID of process to change priority");
     parser().registerFlag('n', "scheduling priority", "Displays priority level of processes");
 
 }
@@ -44,13 +45,15 @@ Renice::Result Renice::exec()
     ProcessManager *procs = Kernel::instance()->getProcessManager();
     const Vector<Argument *> & positionals = arguments().getPositionals();
     if(positionalCount == 2){
-        String oldAndNewPID = arguments().get("PRIORITY and PID");
-        out << oldAndNewPID;
-        const Vector<Argument *> & positionals = arguments().getPositionals();
-        int newPriority = positionals[0];
-        PID = positionals[1];
+        //ProcessID PID = atoi(arguments().get("PROCESS ID"));
+        String priority = arguments().get("PRIORITY");
+        ProcessID PID = arguments().get("PID");
+        out << PID;
+        //const Vector<Argument *> & positionals = arguments().getPositionals();
+        //int newPriority = positionals[0];
+        //PID = positionals[1];
         proc = procs->get(PID);
-        procs->modifyPriority(proc, PID);   
+        procs->modifyPriority(proc, priority);   
         return Success;
     }
     else{
