@@ -44,12 +44,12 @@ Renice::Result Renice::exec()
     //from processctl.cpp
     //ProcessManager *procs = Kernel::instance()->getProcessManager();
     //const Vector<Argument *> & positionals = arguments().getPositionals();
-     int *nullInt;
+    int *nullInt;
     //ProcessID PID = atoi(arguments().get("PROCESS ID"));
     int priority = atoi(arguments().get("PRIORITY"));
     ProcessID PID = atoi(arguments().get("PID"));
     out << PID;
-    if (renice(PID, nullInt, priority) == -1){
+    if (modifypriority(PID, nullInt, priority) == -1){
         ERROR("Something went wrong!");
     };
    

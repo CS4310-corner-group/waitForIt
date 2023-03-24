@@ -20,7 +20,7 @@
 #include "sys/types.h"
 #include <errno.h>
 
-pid_t renice(pid_t pid, int *stat_loc, int priority)
+pid_t modifypriority(pid_t pid, int *stat_loc, int priority)
 {
     const ulong result = (ulong) ProcessCtl(pid, ModifyPriority, priority);
 
