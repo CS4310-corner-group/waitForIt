@@ -54,7 +54,8 @@ Renice::Result Renice::exec()
         ERROR("Something went wrong!");
     };
     */
-    modifypriority(PID, nullInt, priority);
+    modprio(PID, nullInt, priority);
+    
     
    
     //const Vector<Argument *> & positionals = arguments().getPositionals();
