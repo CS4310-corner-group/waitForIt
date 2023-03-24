@@ -21,12 +21,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <ProcessClient.h>
 #include "ProcessManager.h"
-#include <FreeNOS/Kernel.h>
-#include <FreeNOS/ProcessEvent.h>
-#include <FreeNOS/ProcessManager.h>
 #include "Renice.h"
+#include <sys/renice.h>
 
 Renice::Renice(int argc, char **argv)
     : POSIXApplication(argc, argv)
