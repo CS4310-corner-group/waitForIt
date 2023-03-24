@@ -68,7 +68,7 @@ API::Result ProcessCtlHandler(const ProcessID procID,
         return (API::Result) procs->current()->getID();
 
     case ModifyPriority:
-        proc->setPriority(priority);
+        proc->setPriority(addr);
         break;
 
     case GetParent:
@@ -194,6 +194,7 @@ Log & operator << (Log &log, ProcessOperation op)
         case Spawn:     log.append("Spawn"); break;
         case KillPID:   log.append("KillPID"); break;
         case GetPID:    log.append("GetPID"); break;
+        case ModifyPriority: log.append("ModifyPriority"); break;
         case GetParent: log.append("GetParent"); break;
         case WatchIRQ:  log.append("WatchIRQ"); break;
         case EnableIRQ: log.append("EnableIRQ"); break;

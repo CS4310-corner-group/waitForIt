@@ -43,27 +43,28 @@ Renice::Result Renice::exec()
     //int positionalCount = arguments().getPositionals().count;
     //ProcessID PID;
     String out;
-    Process *proc = ZERO;
+    //Process *proc = ZERO;
     //from processctl.cpp
-    ProcessManager *procs = Kernel::instance()->getProcessManager();
+    //ProcessManager *procs = Kernel::instance()->getProcessManager();
     //const Vector<Argument *> & positionals = arguments().getPositionals();
-    if(positionalCount == 2){
-        //ProcessID PID = atoi(arguments().get("PROCESS ID"));
-        int priority = atoi(arguments().get("PRIORITY"));
-        ProcessID PID = atoi(arguments().get("PID"));
-        out << PID;
-        //const Vector<Argument *> & positionals = arguments().getPositionals();
-        //int newPriority = positionals[0];
-        //PID = positionals[1];
-        
-        proc = procs->get(PID);
-        procs->modifyPriority(proc, priority);   
-        return Success;
-    }
-    else{
-        ERROR("invalid argument");
-        return InvalidArgument;
-    }
+     int *nullInt;
+    //ProcessID PID = atoi(arguments().get("PROCESS ID"));
+    int priority = atoi(arguments().get("PRIORITY"));
+    ProcessID PID = atoi(arguments().get("PID"));
+    out << PID;
+    if (renice(PID, nullInt, priority) == -1){
+        ERROR("Something went wrong!");
+    };
+   
+    //const Vector<Argument *> & positionals = arguments().getPositionals();
+    //int newPriority = positionals[0];
+    //PID = positionals[1];
+    //proc = procs->get(PID);
+    //procs->modifyPriority(proc, priority);   
+    return Success;
+       
+    
+   
    
     
     
