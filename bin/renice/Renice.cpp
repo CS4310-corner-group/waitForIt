@@ -46,7 +46,7 @@ Renice::Result Renice::exec()
 {
     String out;
     if(arguments().get("scheduling priority")){
-        int *nullInt = 0;
+        //int *nullInt = 0;
         int priority = atoi(arguments().get("PRIORITY"));
         ProcessID PID = atoi(arguments().get("PID"));
         out << PID;
