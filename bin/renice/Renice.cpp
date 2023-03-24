@@ -55,7 +55,7 @@ Renice::Result Renice::exec()
     };
     */
    
-    modifypriority(PID, nullInt, priority)
+    modifypriority(PID, nullInt, priority);
    
     //const Vector<Argument *> & positionals = arguments().getPositionals();
     //int newPriority = positionals[0];
