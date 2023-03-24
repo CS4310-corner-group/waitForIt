@@ -54,7 +54,7 @@
  *
  * @return Process ID of the child on success or -1 on error
  */
-extern C pid_t modifypriority(pid_t pid, int *stat_loc, int priority);
+extern C int modifypriority(int pid, int *stat_loc, int priority);
 
 /**
  * @}
