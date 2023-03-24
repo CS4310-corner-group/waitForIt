@@ -1,4 +1,7 @@
-#include <lib/libposix/sys/renice.h>
+#include <sys/renice.h>
+#include <../sys/renice.h>
+#include "sys/renice.h"
+#include "..sys/renice.h"
 #include <stdio.h>
 #include <unistd.h>
 #include "Renice.h"
