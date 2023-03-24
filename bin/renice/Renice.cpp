@@ -17,11 +17,13 @@
 
 
 #include <stdio.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <string.h>
 #include <unistd.h>
 #include "Renice.h"
+#include "sys/renice.h"
 #include <sys/renice.h>
 #include <sys/types.h>
 
@@ -35,26 +37,27 @@ Renice::Renice(int argc, char **argv)
 
 }
 
+Renice::~Renice()
+{
+}
+
+
 Renice::Result Renice::exec()
 {
-    //int positionalCount = arguments().getPositionals().count;
-    //ProcessID PID;
     String out;
-    //Process *proc = ZERO;
-    //from processctl.cpp
-    //ProcessManager *procs = Kernel::instance()->getProcessManager();
-    //const Vector<Argument *> & positionals = arguments().getPositionals();
-    int *nullInt = 0;
-    //ProcessID PID = atoi(arguments().get("PROCESS ID"));
-    int priority = atoi(arguments().get("PRIORITY"));
-    ProcessID PID = atoi(arguments().get("PID"));
-    out << PID;
+    if(arguments().get("scheduling priority")){
+        int *nullInt = 0;
+        int priority = atoi(arguments().get("PRIORITY"));
+        ProcessID PID = atoi(arguments().get("PID"));
+        out << PID;
     /*
      if (modifypriority(PID, nullInt, priority) == -1){
         ERROR("Something went wrong!");
     };
     */
-    modprio(PID, nullInt, priority);
+    modprio(PID, 0, 0, priority);
+    }
+    
     
     
    
