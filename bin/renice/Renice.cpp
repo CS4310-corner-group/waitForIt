@@ -15,15 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <Types.h>
-#include <Macros.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <string.h>
 #include <unistd.h>
-#include "ProcessManager.h"
 #include "Renice.h"
 #include <sys/renice.h>
+#include <sys/types.h>
 
 Renice::Renice(int argc, char **argv)
     : POSIXApplication(argc, argv)
@@ -50,12 +50,11 @@ Renice::Result Renice::exec()
     ProcessID PID = atoi(arguments().get("PID"));
     out << PID;
     /*
-     if (modifypriority(PID, nullInt, priority) == -1){
+    */
+    if (modifypriority(PID, nullInt, priority) == -1){
         ERROR("Something went wrong!");
     };
-    */
-   
-    modifypriority(PID, nullInt, priority);
+    
    
     //const Vector<Argument *> & positionals = arguments().getPositionals();
     //int newPriority = positionals[0];

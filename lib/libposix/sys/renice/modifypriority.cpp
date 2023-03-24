@@ -20,7 +20,7 @@
 #include "sys/types.h"
 #include <errno.h>
 
-int modifypriority(int pid, int *stat_loc, int priority)
+pid_t modifypriority(pid_t pid, int *stat_loc, int priority)
 {
     const ulong result = (ulong) ProcessCtl(pid, ModifyPriority, priority);
 
@@ -28,7 +28,7 @@ int modifypriority(int pid, int *stat_loc, int priority)
     {
         case API::NotFound:
             errno = ESRCH;
-            return -1;
+            return (pid_t) -1;
 
         case API::Success:
             if (stat_loc)
@@ -39,6 +39,6 @@ int modifypriority(int pid, int *stat_loc, int priority)
 
         default:
             errno = EIO;
-            return -1;
+            return (pid_t) -1;
     }
 }
