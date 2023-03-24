@@ -1,7 +1,4 @@
-#include <sys/renice.h>
-#include <../sys/renice.h>
-#include "sys/renice.h"
-#include "..sys/renice.h"
+#include <sys/modprio.h>
 #include <stdio.h>
 #include <unistd.h>
 #include "Renice.h"

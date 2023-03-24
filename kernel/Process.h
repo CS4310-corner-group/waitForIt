@@ -149,7 +149,10 @@ class Process
      * @return Priority level of the Process.
      */
     int getPriority() const;
-
+    /**
+     * Set priority
+     */
+    Result setPriority(int priority);
 
 
     /**
@@ -253,10 +256,7 @@ class Process
      */
     void setParent(ProcessID id);
 
-     /**
-     * Set priority
-     */
-    void setPriority(int priority);
+ 
 
 
   protected:
