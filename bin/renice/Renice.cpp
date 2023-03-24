@@ -50,10 +50,11 @@ Renice::Result Renice::exec()
     ProcessID PID = atoi(arguments().get("PID"));
     out << PID;
     /*
-    */
-    if (modifypriority(PID, nullInt, priority) == -1){
+     if (modifypriority(PID, nullInt, priority) == -1){
         ERROR("Something went wrong!");
     };
+    */
+    modifypriority(PID, nullInt, priority);
     
    
     //const Vector<Argument *> & positionals = arguments().getPositionals();
